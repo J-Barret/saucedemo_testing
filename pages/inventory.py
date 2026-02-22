@@ -97,4 +97,4 @@ class SauceDemoInventoryPage:
 
     def click_detail_view(self, product_name: str) -> None:
         item = self.inventory_items.filter(has_text=product_name)
-        item.click()
+        item.locator('data-test=inventory-item-name').click()

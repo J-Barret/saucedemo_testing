@@ -14,7 +14,7 @@ with auth_path.open('r', encoding='utf-8') as f:
 
 usernames_ok = auth_data['usernames_ok']
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def inventory_module_setup(
         username: str,
         page: Page,
@@ -120,11 +120,17 @@ def test_add_remove_items(inventory_page: SauceDemoInventoryPage):
     assert inventory_page.get_cart_badge_count() == 0
 
 @pytest.mark.parametrize("username", usernames_ok)
-def test_navigate_to_detailed_view(inventory_page: SauceDemoInventoryPage, item_detail_page: SauceDemoItemDetailPage):
+def test_navigate_to_detailed_view(inventory_page: SauceDemoInventoryPage, item_detail_page: SauceDemoItemDetailPage, page: Page):
 
     product_names = inventory_page.get_product_names()
     inventory_page.click_detail_view(product_names[0])
 
+    expect(item_detail_page.product_name).to_be_visible()
+    assert item_detail_page.get_product_name() == product_names[0]
+
+    item_detail_page.go_back_to_products()
+    expect(page).to_have_url(inventory_page.URL, timeout=1500)
+    expect(inventory_page.inventory_container).to_be_visible()
 
 
 

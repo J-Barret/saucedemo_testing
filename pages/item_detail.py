@@ -18,6 +18,7 @@ class SauceDemoItemDetailPage:
 
         #cart
         self.shopping_cart_link = page.locator('data-test=shopping-cart-link')
+        self.cart_badge = page.locator('data-test=shopping-cart-badge')
 
 
 
@@ -38,3 +39,8 @@ class SauceDemoItemDetailPage:
 
     def is_remove_button_visible(self) -> bool:
         return self.remove_button.is_visible()
+
+    def get_cart_badge_count(self) -> int:
+        if not self.cart_badge.is_visible():
+            return 0
+        return int(self.cart_badge.text_content())
