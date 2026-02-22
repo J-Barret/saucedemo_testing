@@ -10,13 +10,6 @@ auth_path = (Path(__file__).parent.parent / 'test_data' / 'auth.json').resolve()
 with auth_path.open('r', encoding='utf-8') as f:
     auth_data = json.load(f)
 
-"""
-Tipologias test:
-
-1 - login ok
-2 - login ok con mala performance
-3 - login ko
-"""
 
 usernames_ok = auth_data['usernames_ok']
 
