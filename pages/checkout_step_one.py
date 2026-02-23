@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 
 class SauceDemoCheckoutStepOnePage:
@@ -49,6 +49,9 @@ class SauceDemoCheckoutStepOnePage:
         self.first_name_input.fill(first_name)
         self.last_name_input.fill(last_name)
         self.postal_code_input.fill(postal_code)
+
+    def cancel_checkout(self) -> None:
+        self.cancel_button.click()
 
     def continue_checkout(self) -> None:
         self.continue_button.click()

@@ -5,6 +5,8 @@ from pages.inventory import SauceDemoInventoryPage
 from pages.item_detail import SauceDemoItemDetailPage
 from pages.cart import SauceDemoCartPage
 from pages.checkout_step_one import SauceDemoCheckoutStepOnePage
+from pages.checkout_step_two import SauceDemoCheckoutStepTwoPage
+from pages.checkout_complete import SauceDemoCheckoutComplete
 from playwright.sync_api import Page
 
 @pytest.fixture
@@ -26,3 +28,11 @@ def cart_page(page: Page) -> SauceDemoCartPage:
 @pytest.fixture
 def checkout_step_one_page(page: Page) -> SauceDemoCheckoutStepOnePage:
     return SauceDemoCheckoutStepOnePage(page)
+
+@pytest.fixture
+def checkout_step_two_page(page: Page) -> SauceDemoCheckoutStepTwoPage:
+    return SauceDemoCheckoutStepTwoPage(page)
+
+@pytest.fixture
+def checkout_complete_page(page: Page) -> SauceDemoCheckoutComplete:
+    return SauceDemoCheckoutComplete(page)
